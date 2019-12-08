@@ -19,6 +19,7 @@
 #include "tools/matchbin_utils.h"
 
 #include "ConfigBase.h"
+#include "MultiMatchBin.h"
 
 class FrameHardware;
 
@@ -31,7 +32,7 @@ public:
   using TRAIT_TYPE = emp::Ptr<FrameHardware>;
   using chanid_t = uint64_t;
 
-  using matchbin_t = emp::MatchBin<
+  using matchbin_t = MultiMatchBin<
     size_t
 #ifdef METRIC
     , std::conditional<STRINGVIEWIFY(METRIC) == "integer",
@@ -51,7 +52,7 @@ public:
       >::type
       >::type
 #else
-    , emp::SymmetricWrapMetric<TAG_WIDTH> // hamming is default
+    , emp::SymmetricWrapMetric<TAG_WIDTH> // default
 #endif
 #ifdef SELECTOR
     , std::conditional<STRINGVIEWIFY(SELECTOR) == "roulette",
@@ -74,8 +75,9 @@ public:
       >::type
       >::type
 #else
-    , emp::DePoSelector<> // ranked selector is default
+    , emp::DePoSelector<> // default
 #endif
+    , emp::SieveSelector<> // secondary
 #ifdef REGULATOR
     , std::conditional<STRINGVIEWIFY(REGULATOR) == "multiplicative",
         emp::MultiplicativeCountdownRegulator<>,

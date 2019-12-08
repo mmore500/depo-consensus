@@ -191,11 +191,73 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
     {"affinity"}
   );
 
-  // TODO fix this by creating DualMatchBin
-  // il.AddInst("SetRegulator", Config::hardware_t::Inst_SetRegulator, 1, "Sets the regulator of a tag in the matchbin.");
-  // il.AddInst("AdjRegulator", Config::hardware_t::Inst_AdjRegulator, 2, "Adjusts the regulator of a tag in the matchbin towards a target.");
-  // il.AddInst("ExtRegulator", Config::hardware_t::Inst_ExtRegulator, 2, "extends the decay counter of a regulator of a tag in the matchbin.");
-  // il.AddInst("SenseRegulator", Config::hardware_t::Inst_SenseRegulator, 1, "Senses the regulator of a tag in the matchbin.");
+  il.AddInst(
+    "SetRegulator",
+    [](hardware_t & hw, const inst_t & inst){
+
+      hw.GetMatchBin().Toggle();
+
+      Config::hardware_t::Inst_SetRegulator(hw, inst);
+
+      hw.GetMatchBin().Toggle();
+    },
+    1,
+    "Sets the regulator of a tag in the matchbin.",
+    emp::ScopeType::BASIC,
+    0,
+    {"affinity"}
+  );
+
+  il.AddInst(
+    "AdjRegulator",
+    [](hardware_t & hw, const inst_t & inst){
+
+      hw.GetMatchBin().Toggle();
+
+      Config::hardware_t::Inst_AdjRegulator(hw, inst);
+
+      hw.GetMatchBin().Toggle();
+    },
+    1,
+    "Adjusts the regulator of a tag in the matchbin.",
+    emp::ScopeType::BASIC,
+    0,
+    {"affinity"}
+  );
+
+  il.AddInst(
+    "ExtRegulator",
+    [](hardware_t & hw, const inst_t & inst){
+
+      hw.GetMatchBin().Toggle();
+
+      Config::hardware_t::Inst_ExtRegulator(hw, inst);
+
+      hw.GetMatchBin().Toggle();
+    },
+    2,
+    "extends the decay counter of a regulator of a tag in the matchbin.",
+    emp::ScopeType::BASIC,
+    0,
+    {"affinity"}
+  );
+
+  il.AddInst(
+    "SenseRegulator",
+    [](hardware_t & hw, const inst_t & inst){
+
+      hw.GetMatchBin().Toggle();
+
+      Config::hardware_t::Inst_SenseRegulator(hw, inst);
+
+      hw.GetMatchBin().Toggle();
+    },
+    1,
+    "Senses the regulator of a tag in the matchbin.",
+    emp::ScopeType::BASIC,
+    0,
+    {"affinity"}
+  );
 
 }
 
