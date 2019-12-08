@@ -96,7 +96,7 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
       state_t & state = hw.GetCurState();
 
       const double depo_amt = 1.0 + std::tanh(
-         state.GetLocal(inst.args[0]) - 1.0
+        state.GetLocal(inst.args[0]) - 0.5
       );
       state.output_mem[
         std::numeric_limits<int>::max()
@@ -119,7 +119,7 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
   //
   //     const state_t & state = hw.GetCurState();
   //     const double depo_amt = 1.0 + std::tanh(
-  //        state.GetLocal(inst.args[0]) - 1.0
+  //       state.GetLocal(inst.args[0]) - 0.5
   //     );
   //     hw.GetCPU().GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
   //
@@ -159,7 +159,7 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
       const state_t & state = hw.GetCurState();
 
       const double depo_amt = 1.0 + std::tanh(
-         state.GetLocal(inst.args[0]) - 1.0
+        state.GetLocal(inst.args[0]) - 0.5
       );
       hw.GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
 
