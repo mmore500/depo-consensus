@@ -64,6 +64,7 @@ int main()
       return mut.ApplyMutations(org, rand);
     }
   );
+  grid_world.SetAutoMutate();
 
   for (size_t i = 0; i < POP_SIZE; ++i) {
     grid_world.InjectAt(
