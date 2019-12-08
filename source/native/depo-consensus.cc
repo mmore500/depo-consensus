@@ -37,14 +37,15 @@ int main()
   Evaluator eval(
     LibraryInstruction::Make(cfg),
     LibraryEvent::Make(cfg),
-    rand,
-    cfg_
+    random,
+    cfg
   );
   grid_world.SetFitFun(
     [&](Config::program_t & org){
       const size_t nrep_outer = 1;
       const size_t nrep_inner = 1;
 
+      double res = 0.0;
       // #pragma omp parallel for reduction(+: res)
       for (size_t out = 0; out < nrep_outer; ++out) {
         for (size_t in = 0; in < nrep_inner; ++in) {
