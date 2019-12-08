@@ -48,6 +48,7 @@ void FrameHardware::SetGuess(const size_t set) { guess = set; };
 
 void FrameHardware::SetProgram(const Config::program_t & program) {
   cpu.SetProgram(program);
+  SoftReset();
 }
 
 void FrameHardware::Step(const size_t step) {
