@@ -52,14 +52,22 @@ public:
   }
 
   double EvaluateOnce(const size_t underlying_state) {
-    const double state_probability = (
-      underlying_state
-      ? 0.67
-      : 0.33
-    );
+    // const double state_probability = (
+    //   underlying_state
+    //   ? 0.9
+    //   : 0.1
+    // );
+    // emp::vector<size_t> yeps(state_probability *frames.size(), 1);
+    // emp::vector<size_t> nopes(frames.size() - yeps.size(), 0);
 
-    emp::vector<size_t> yeps(state_probability * frames.size(), 1);
-    emp::vector<size_t> nopes(frames.size() - yeps.size(), 0);
+    emp::vector<size_t> yeps(
+      underlying_state ? frames.size() - 1 : 1,
+      1
+    );
+    emp::vector<size_t> nopes(
+      !underlying_state ? frames.size() - 1 : 1,
+      0
+    );
 
     emp::vector<size_t> shuffler(yeps);
     shuffler.insert(
