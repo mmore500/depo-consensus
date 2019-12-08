@@ -10,8 +10,8 @@ EMP_BUILD_CONFIG(
 
   GROUP(CORE, "Core settings for DISHTINY"),
   VALUE(SEED, int, 1, "Random number generator seed."),
-  VALUE(GRID_H, size_t, 4, "How many tiles tall should the grid be?"),
-  VALUE(GRID_W, size_t, 4, "How many tiles wide should the grid be?"),
+  VALUE(GRID_H, size_t, 3, "How many tiles tall should the grid be?"),
+  VALUE(GRID_W, size_t, 3, "How many tiles wide should the grid be?"),
 
   GROUP(PROGRAM_GROUP, "SignalGP program Settings"),
   VALUE(PROGRAM_MAX_FUN_CNT__INIT, size_t, 16, "Used for generating SGP programs. At most, how many functions do we generate?"),

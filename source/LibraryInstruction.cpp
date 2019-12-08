@@ -232,7 +232,7 @@ const inst_lib_t& LibraryInstruction::Make(const Config &cfg) {
         const state_t & state = hw.GetCurState();
 
         fh.SetGuess(
-          !state.GetLocal(inst.args[0])
+          state.GetLocal(inst.args[0]) ? 0 : 1
         );
 
       },
@@ -247,7 +247,7 @@ const inst_lib_t& LibraryInstruction::Make(const Config &cfg) {
         const state_t & state = hw.GetCurState();
 
         fh.SetGuess(
-          state.GetLocal(inst.args[0])
+          state.GetLocal(inst.args[0]) ? 1 : 0
         );
 
       },

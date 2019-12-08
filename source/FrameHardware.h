@@ -22,11 +22,6 @@ private:
 
   Config::inbox_t inbox;
 
-  const Config::tag_t pro;
-
-  const Config::tag_t anti;
-
-
 public:
 
   FrameHardware() = delete;

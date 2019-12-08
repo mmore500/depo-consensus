@@ -15,8 +15,6 @@ FrameHardware::FrameHardware(
     emp::Random &rand
   ) : cfg(cfg_)
   , cpu(inst_lib, event_lib, &rand)
-  , pro()
-  , anti(pro.NOT())
   {
     cpu.SetTrait(this);
     SoftReset();
@@ -24,6 +22,7 @@ FrameHardware::FrameHardware(
 
 void FrameHardware::SoftReset() {
   guess = std::numeric_limits<size_t>::max();
+  cpu.ResetHardware();
   cpu.GetMatchBin().GetSelector().Decay();
   inbox.clear();
 }
@@ -48,14 +47,16 @@ void FrameHardware::SetGuess(const size_t set) { guess = set; };
 
 void FrameHardware::SetProgram(const Config::program_t & program) {
   cpu.SetProgram(program);
-  SoftReset();
 }
 
 void FrameHardware::Step(const size_t step) {
 
   cpu.GetMatchBin().GetSelector().Decay();
+  cpu.GetMatchBin().DecayRegulators();
 
-  // const static Config::tag_t neutral(rand);
+  static emp::Random rand(1);
+  const static Config::tag_t pro(rand);
+  const static Config::tag_t anti(rand);
 
   cpu.GetMatchBin().GetSelector().SetCurDePoAmt(1.0);
   if (GetState()) {

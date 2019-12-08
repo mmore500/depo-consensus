@@ -10,7 +10,7 @@ class Evaluator {
   const Config &cfg;
   GeometryHelper geom;
 
-  emp::vector<FrameHardware> frames;
+  emp::vector<emp::Ptr<FrameHardware>> frames;
 
 public:
 
@@ -26,31 +26,36 @@ public:
 
     frames.reserve(geom.GetLocalSize());
     for (size_t i = 0; i < geom.GetLocalSize(); ++i) {
-      frames.emplace_back(cfg, inst_lib, event_lib, rand);
+      frames.push_back(
+        emp::NewPtr<FrameHardware>(
+          cfg, inst_lib, event_lib, rand
+        )
+      );
     }
 
     for (size_t i = 0; i < frames.size(); ++i) {
       emp::vector<std::reference_wrapper<FrameHardware>> res;
       for (const auto & neigh : geom.CalcLocalNeighs(i)) {
-        res.push_back(frames[neigh]);
+        res.push_back(*frames[neigh]);
       }
-      frames[i].SetNeighs(res);
+      frames[i]->SetNeighs(res);
     }
 
+    emp_assert(frames.size());
+
   }
+
+  ~Evaluator() { for (auto & frame : frames) frame.Delete(); }
 
   void SetProgram(const Config::program_t &program) {
-    for (auto & frame : frames) {
-      frame.SetProgram(program);
-    }
+    for (auto & frame : frames) frame->SetProgram(program);
   }
 
-  double EvaluateOnce() {
-    const size_t underlying_state = rand.P(0.5);
+  double EvaluateOnce(const size_t underlying_state) {
     const double state_probability = (
       underlying_state
-      ? 0.75
-      : 0.25
+      ? 0.67
+      : 0.33
     );
 
     emp::vector<size_t> yeps(state_probability * frames.size(), 1);
@@ -69,37 +74,51 @@ public:
 
     for (size_t i = 0; i < frames.size(); ++i) {
       auto & frame = frames[i];
-      frame.SoftReset();
-      frame.SetState(shuffler[i]);
+      frame->SoftReset();
+      frame->SetState(shuffler[i]);
     }
 
-    for (size_t step = 0; step < 16; ++step) {
+    for (size_t step = 0; step < 32; ++step) {
       for (auto & frame : frames) {
-        frame.Step(step);
+        frame->Step(step);
       }
     }
+
+    // for (auto & frame : frames) frame->SetGuess(underlying_state);
 
     const double correctness_score = std::count_if(
       std::begin(frames),
       std::end(frames),
       [underlying_state](const auto & frame){
-        return frame.GetGuess() == underlying_state;
+        return frame->GetGuess() == underlying_state;
       }
     );
 
-    const double activity = std::count_if(
+    const double guess_score = std::count_if(
       std::begin(frames),
       std::end(frames),
-      [underlying_state](const auto & frame){
+      [](const auto & frame){
         return (
-          frame.GetGuess() != std::numeric_limits<size_t>::max()
-          && frame.GetGuess() != frame.GetState()
+          frame->GetGuess() != std::numeric_limits<size_t>::max()
+        );
+      }
+    );
+
+    const double talking_score = std::count_if(
+      std::begin(frames),
+      std::end(frames),
+      [](const auto & frame){
+        return (
+          frame->GetGuess() != frame->GetState()
         );
       }
     );
 
     return (
-      correctness_score + activity / frames.size()
+      correctness_score
+        + (
+          guess_score + talking_score / frames.size()
+        ) / frames.size()
     ) / frames.size();
 
   }
@@ -107,7 +126,7 @@ public:
   double Evaluate(const Config::program_t & org) {
 
     SetProgram(org);
-    return EvaluateOnce();
+    return (EvaluateOnce(0) + EvaluateOnce(1)) / 2;
 
   }
 

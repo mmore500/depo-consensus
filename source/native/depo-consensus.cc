@@ -41,22 +41,8 @@ int main()
     cfg
   );
   grid_world.SetFitFun(
-    [&](Config::program_t & org){
-      const size_t nrep_outer = 1;
-      const size_t nrep_inner = 1;
-
-      double res = 0.0;
-      // #pragma omp parallel for reduction(+: res)
-      for (size_t out = 0; out < nrep_outer; ++out) {
-        for (size_t in = 0; in < nrep_inner; ++in) {
-          res += eval.Evaluate(org);
-        }
-      }
-
-      std::cout << "." << std::flush;
-
-      return res / (nrep_outer * nrep_inner);
-
+    [&eval](Config::program_t & org){
+      return eval.Evaluate(org);
     }
   );
 
@@ -89,7 +75,7 @@ int main()
   for (size_t g = 0; g < GENS; ++g) {
     emp::TournamentSelect(grid_world, 7, 100);
     grid_world.Update();
-    std::cout << std::endl;
+    std::cout << "." << std::flush;
   }
 
 }
