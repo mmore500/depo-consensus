@@ -46,16 +46,31 @@ public:
   }
 
   double EvaluateOnce() {
-    const size_t underlying_state = rand.GetUInt(2);
+    const size_t underlying_state = rand.P(0.5);
     const double state_probability = (
       underlying_state
       ? 0.75
       : 0.25
     );
 
-    for (auto & frame : frames) {
+    emp::vector<size_t> yeps(state_probability * frames.size(), 1);
+    emp::vector<size_t> nopes(frames.size() - yeps.size(), 0);
+
+    emp::vector<size_t> shuffler(yeps);
+    shuffler.insert(
+      std::end(shuffler),
+      std::begin(nopes),
+      std::end(nopes)
+    );
+
+    emp::Shuffle(rand, shuffler);
+
+    emp_assert(shuffler.size() == frames.size());
+
+    for (size_t i = 0; i < frames.size(); ++i) {
+      auto & frame = frames[i];
       frame.SoftReset();
-      frame.SetState(rand.P(state_probability));
+      frame.SetState(shuffler[i]);
     }
 
     for (size_t step = 0; step < 16; ++step) {
