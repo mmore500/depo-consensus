@@ -111,47 +111,21 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
     {"affinity"}
   );
 
-  // il.AddInst(
-  //   "CallSmall",
-  //   [](hardware_t & hw, const inst_t & inst){
-  //     FrameHardware &fh = *hw.GetTrait();
-  //     const state_t & state = hw.GetCurState();
-  //
-  //     const state_t & state = hw.GetCurState();
-  //     const double depo_amt = 1.0 + std::tanh(
-  //       state.GetLocal(inst.args[0]) - 0.5
-  //     );
-  //     hw.GetCPU().GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
-  //
-  //     Config::hardware_t::Inst_Call(hw, inst);
-  //   },
-  //   1,
-  //   "Call function that best matches call affinity.",
-  //   emp::ScopeType::BASIC,
-  //   0,
-  //   {"affinity"}
-  // );
-  //
-  // il.AddInst(
-  //   "CallBig",
-  //   [](hardware_t & hw, const inst_t & inst){
-  //     FrameHardware &fh = *hw.GetTrait();
-  //     const state_t & state = hw.GetCurState();
-  //
-  //     const state_t & state = hw.GetCurState();
-  //     const double depo_amt = 1.0 + std::tanh(
-  //        state.GetLocal(inst.args[0])
-  //     );
-  //     hw.GetCPU().GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
-  //
-  //     Config::hardware_t::Inst_Call(hw, inst);
-  //   },
-  //   1,
-  //   "Call function that best matches call affinity.",
-  //   emp::ScopeType::BASIC,
-  //   0,
-  //   {"affinity"}
-  // );
+  il.AddInst(
+    "Call",
+    [](hardware_t & hw, const inst_t & inst){
+      hw.GetMatchBin().Toggle();
+
+      Config::hardware_t::Inst_Call(hw, inst);
+
+      hw.GetMatchBin().Toggle();
+    },
+    1,
+    "Call function that best matches call affinity.",
+    emp::ScopeType::BASIC,
+    0,
+    {"affinity"}
+  );
 
   il.AddInst(
     "ForkSmall",
