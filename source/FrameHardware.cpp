@@ -15,6 +15,8 @@ FrameHardware::FrameHardware(
     emp::Random &rand
   ) : cfg(cfg_)
   , cpu(inst_lib, event_lib, &rand)
+  , pro()
+  , anti(pro.NOT())
   {
     cpu.SetTrait(this);
     SoftReset();
@@ -52,24 +54,16 @@ void FrameHardware::Step(const size_t step) {
 
   cpu.GetMatchBin().GetSelector().Decay();
 
-  // event driven triggers
-  if (step % 2 == 0) {
+  // const static Config::tag_t neutral(rand);
 
-    emp::Random rand(1);
-    const Config::tag_t pro(rand);
-    const Config::tag_t anti(rand);
-    // const static Config::tag_t neutral(rand);
-
-    cpu.GetMatchBin().GetSelector().SetCurDePoAmt(1.0);
-    if (GetState()) {
-      cpu.SpawnCore(pro, cpu.GetMinBindThresh());
-    } else {
-      cpu.SpawnCore(anti, cpu.GetMinBindThresh());
-    }
-
-    //hw.SpawnCore(neutral, hw.GetMinBindThresh());
-
+  cpu.GetMatchBin().GetSelector().SetCurDePoAmt(1.0);
+  if (GetState()) {
+    cpu.SpawnCore(pro, cpu.GetMinBindThresh());
+  } else {
+    cpu.SpawnCore(anti, cpu.GetMinBindThresh());
   }
+
+  //hw.SpawnCore(neutral, hw.GetMinBindThresh());
 
   // enq inbox messages
   while(!inbox.empty()) {
