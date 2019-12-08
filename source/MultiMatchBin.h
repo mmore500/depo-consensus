@@ -39,7 +39,7 @@ protected:
   emp::MatchBin<
     Val,
     Metric,
-    SelectorA,
+    SelectorB,
     Regulator
   > mb_b;
 
@@ -47,9 +47,13 @@ protected:
 
 public:
 
-  MultiMatchBin(emp::Random & rand_) { ; }
+  MultiMatchBin(
+    emp::Random & rand_
+  ) : mb_a(rand_)
+    , mb_b(rand_)
+  { ; }
 
-  void Toggle() { which = !which; }
+  void SetWhich(const bool set) { which = set; }
 
   /// Reset the Selector cache for regulated scores.
   void ClearRegulatedCache() {

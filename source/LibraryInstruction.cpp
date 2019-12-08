@@ -114,11 +114,11 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
   il.AddInst(
     "Call",
     [](hardware_t & hw, const inst_t & inst){
-      hw.GetMatchBin().Toggle();
 
+      hw.GetMatchBin().SetWhich(false);
       Config::hardware_t::Inst_Call(hw, inst);
+      hw.GetMatchBin().SetWhich(true);
 
-      hw.GetMatchBin().Toggle();
     },
     1,
     "Call function that best matches call affinity.",
@@ -169,11 +169,10 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
     "SetRegulator",
     [](hardware_t & hw, const inst_t & inst){
 
-      hw.GetMatchBin().Toggle();
-
+      hw.GetMatchBin().SetWhich(false);
       Config::hardware_t::Inst_SetRegulator(hw, inst);
+      hw.GetMatchBin().SetWhich(true);
 
-      hw.GetMatchBin().Toggle();
     },
     1,
     "Sets the regulator of a tag in the matchbin.",
@@ -186,11 +185,10 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
     "AdjRegulator",
     [](hardware_t & hw, const inst_t & inst){
 
-      hw.GetMatchBin().Toggle();
-
+      hw.GetMatchBin().SetWhich(false);
       Config::hardware_t::Inst_AdjRegulator(hw, inst);
+      hw.GetMatchBin().SetWhich(true);
 
-      hw.GetMatchBin().Toggle();
     },
     1,
     "Adjusts the regulator of a tag in the matchbin.",
@@ -203,11 +201,10 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
     "ExtRegulator",
     [](hardware_t & hw, const inst_t & inst){
 
-      hw.GetMatchBin().Toggle();
-
+      hw.GetMatchBin().SetWhich(false);
       Config::hardware_t::Inst_ExtRegulator(hw, inst);
+      hw.GetMatchBin().SetWhich(true);
 
-      hw.GetMatchBin().Toggle();
     },
     2,
     "extends the decay counter of a regulator of a tag in the matchbin.",
@@ -220,11 +217,10 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
     "SenseRegulator",
     [](hardware_t & hw, const inst_t & inst){
 
-      hw.GetMatchBin().Toggle();
-
+      hw.GetMatchBin().SetWhich(false);
       Config::hardware_t::Inst_SenseRegulator(hw, inst);
+      hw.GetMatchBin().SetWhich(true);
 
-      hw.GetMatchBin().Toggle();
     },
     1,
     "Senses the regulator of a tag in the matchbin.",
