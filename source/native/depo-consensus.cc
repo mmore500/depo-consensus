@@ -26,13 +26,13 @@ int main()
 
   Config cfg;
 
-  constexpr size_t POP_SIZE = 100;
+  constexpr size_t POP_SIZE = 400;
   constexpr size_t GENS = 10000;
 
   emp::Random random(cfg.SEED());
 
   emp::World<Config::program_t> grid_world(random);
-  grid_world.SetPopStruct_Grid(10, 10);
+  grid_world.SetPopStruct_Grid(20, 20);
 
   grid_world.SetFitFun(
     [&](Config::program_t & org){
