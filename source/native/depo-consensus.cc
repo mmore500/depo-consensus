@@ -34,6 +34,18 @@ int main()
   emp::World<Config::program_t> grid_world(random);
   grid_world.SetPopStruct_Grid(10, 10);
 
+  grid_world.SetupFitnessFile();
+  grid_world.AddSystematics(
+    emp::NewPtr<emp::Systematics<Config::program_t,Config::program_t>>(
+      [](Config::program_t & o){return o;},
+      true,
+      true,
+      false
+    ),
+    "systematics"
+  );
+  grid_world.SetupSystematicsFile("systematics");
+
   Evaluator eval(
     LibraryInstruction::Make(cfg),
     LibraryEvent::Make(cfg),
@@ -69,8 +81,6 @@ int main()
       i
     );
   }
-
-  grid_world.SetupFitnessFile();
 
   for (size_t g = 0; g < GENS; ++g) {
     emp::TournamentSelect(grid_world, 7, 100);
