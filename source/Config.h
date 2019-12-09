@@ -32,6 +32,8 @@ public:
   using TRAIT_TYPE = emp::Ptr<FrameHardware>;
   using chanid_t = uint64_t;
 
+  using DEPO_T = emp::DePoSelector<std::ratio<1,5>>;
+
   using matchbin_t = MultiMatchBin<
     size_t
 #ifdef METRIC
@@ -66,16 +68,16 @@ public:
       std::conditional<STRINGVIEWIFY(SELECTOR) == "sieve",
         emp::SieveSelector<>,
       std::conditional<STRINGVIEWIFY(SELECTOR) == "depo",
-        emp::DePoSelector<>,
-       std::conditional<STRINGVIEWIFY(SELECTOR) == "ranked",
-        emp::RankedSelector<std::ratio<1,2>>,
+        DEPO_T,
+      std::conditional<STRINGVIEWIFY(SELECTOR) == "ranked",
+        emp::RankedSelector<std::ratio<1, 2>>,
         std::enable_if<false>
       >::type
       >::type
       >::type
       >::type
 #else
-    , emp::DePoSelector<> // default
+    , DEPO_T
 #endif
     , emp::SieveSelector<> // secondary
 #ifdef REGULATOR

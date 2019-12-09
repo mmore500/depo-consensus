@@ -172,12 +172,21 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
   il.AddInst(
     "ForkSmall",
     [](hardware_t & hw, const inst_t & inst){
-      const state_t & state = hw.GetCurState();
 
-      const double depo_amt = 1.0 + std::tanh(
-        state.GetLocal(inst.args[0]) - 0.5
-      );
-      hw.GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
+      if constexpr (
+        std::is_same<
+          std::decay<decltype(hw.GetMatchBin().GetSelector())>::type,
+          Config::DEPO_T
+        >::value
+      ) {
+
+        const state_t & state = hw.GetCurState();
+        const double depo_amt = 1.0 + std::tanh(
+          state.GetLocal(inst.args[0]) - 0.5
+        );
+        hw.GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
+
+      }
 
       Config::hardware_t::Inst_Fork(hw, inst);
     },
@@ -191,12 +200,23 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
   il.AddInst(
     "ForkBig",
     [](hardware_t & hw, const inst_t & inst){
-      const state_t & state = hw.GetCurState();
 
-      const double depo_amt = 1.0 + std::tanh(
-         state.GetLocal(inst.args[0])
-      );
-      hw.GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
+
+      if constexpr (
+        std::is_same<
+          std::decay<decltype(hw.GetMatchBin().GetSelector())>::type,
+          Config::DEPO_T
+        >::value
+      ) {
+
+        const state_t & state = hw.GetCurState();
+        const double depo_amt = 1.0 + std::tanh(
+           state.GetLocal(inst.args[0])
+        );
+
+        hw.GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
+
+      }
 
       Config::hardware_t::Inst_Fork(hw, inst);
     },

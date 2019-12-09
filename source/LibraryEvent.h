@@ -22,10 +22,20 @@ public:
       el.AddEvent(
         "BcstMsg",
         [](hardware_t & hw, const event_t & event){
-          const double depo_amt = event.msg.at(
-            std::numeric_limits<int>::max()
-          );
-          hw.GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
+
+          if constexpr (
+            std::is_same<
+              std::decay<decltype(hw.GetMatchBin().GetSelector())>::type,
+              Config::DEPO_T
+            >::value
+          ) {
+
+            const double depo_amt = event.msg.at(
+              std::numeric_limits<int>::max()
+            );
+            hw.GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
+
+          }
 
           hw.SpawnCore(event.affinity, hw.GetMinBindThresh(), event.msg);
         },
@@ -46,10 +56,20 @@ public:
       el.AddEvent(
         "SendMsg",
         [](hardware_t & hw, const event_t & event){
-          const double depo_amt = event.msg.at(
-            std::numeric_limits<int>::max()
-          );
-          hw.GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
+
+          if constexpr (
+            std::is_same<
+              std::decay<decltype(hw.GetMatchBin().GetSelector())>::type,
+              Config::DEPO_T
+            >::value
+          ) {
+
+            const double depo_amt = event.msg.at(
+              std::numeric_limits<int>::max()
+            );
+            hw.GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
+
+          }
 
           hw.SpawnCore(event.affinity, hw.GetMinBindThresh(), event.msg);
         },

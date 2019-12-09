@@ -58,7 +58,14 @@ void FrameHardware::Step(const size_t step) {
   const static Config::tag_t pro(rand);
   const static Config::tag_t anti(rand);
 
-  cpu.GetMatchBin().GetSelector().SetCurDePoAmt(1.0);
+  if constexpr (
+    std::is_same<
+      std::decay<decltype(cpu.GetMatchBin().GetSelector())>::type,
+      Config::DEPO_T
+    >::value
+  ) cpu.GetMatchBin().GetSelector().SetCurDePoAmt(1.0);
+
+
   if (GetState()) {
     cpu.SpawnCore(pro, cpu.GetMinBindThresh());
   } else {
