@@ -21,10 +21,7 @@
 #include "../LibraryInstruction.cpp"
 
 
-int main()
-{
-
-  Config cfg;
+void run(const Config &cfg) {
 
   constexpr size_t POP_SIZE = 100;
   constexpr size_t GENS = 10000;
@@ -89,4 +86,30 @@ int main()
     std::cout << "." << std::flush;
   }
 
+}
+
+int main(int argc, char* argv[]) {
+
+  std::cout << "GIT VERSION " << STRINGIFY(GIT_VERSION_) << std::endl;
+  std::cout << "EMP HASH " << STRINGIFY(EMPIRICAL_HASH_) << std::endl;
+  emp::Random temp(1); // need this to prevent a memory leak
+  std::cout << "MATCHBIN "
+    << Config::hardware_t(nullptr, nullptr, &temp).GetMatchBin().name()
+    << std::endl;
+
+  Config cfg;
+  cfg.Read("config.cfg");
+
+  const auto specs = emp::ArgManager::make_builtin_specs(&cfg);
+  emp::ArgManager am(argc, argv, specs);
+  am.UseCallbacks();
+  if (am.HasUnused()) std::exit(EXIT_FAILURE);
+
+  std::cout << "==============================" << std::endl;
+  std::cout << "|    How am I configured?    |" << std::endl;
+  std::cout << "==============================" << std::endl;
+  cfg.WriteMe(std::cout);
+  std::cout << "==============================\n" << std::endl;
+
+  run(cfg);
 }
