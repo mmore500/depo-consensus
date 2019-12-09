@@ -54,7 +54,8 @@ public:
       >::type
       >::type
 #else
-    , emp::SymmetricWrapMetric<TAG_WIDTH> // default
+    // default
+    , emp::CacheMod<emp::UnifMod<emp::ApproxDualStreakMetric<TAG_WIDTH>>>
 #endif
 #ifdef SELECTOR
     , std::conditional<STRINGVIEWIFY(SELECTOR) == "roulette",
@@ -79,7 +80,8 @@ public:
 #else
     , DEPO_T
 #endif
-    , emp::SieveSelector<> // secondary
+    // secondary selector
+    , emp::SieveSelector<std::ratio<1, 5>>
 #ifdef REGULATOR
     , std::conditional<STRINGVIEWIFY(REGULATOR) == "multiplicative",
         emp::MultiplicativeCountdownRegulator<>,
