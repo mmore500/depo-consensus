@@ -82,7 +82,7 @@ public:
     , DEPO_T
 #endif
     // secondary selector
-    , emp::SieveSelector<std::ratio<1, 5>>
+    , emp::SieveSelector<std::ratio<0>, std::ratio<1, 5>>
 #ifdef REGULATOR
     , std::conditional<STRINGVIEWIFY(REGULATOR) == "multiplicative",
         emp::MultiplicativeCountdownRegulator<>,
