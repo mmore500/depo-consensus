@@ -67,7 +67,7 @@ public:
       std::conditional<STRINGVIEWIFY(SELECTOR) == "exproulette",
         emp::ExpRouletteSelector<>,
       std::conditional<STRINGVIEWIFY(SELECTOR) == "sieve",
-        emp::SieveSelector<1, 5>,
+        emp::SieveSelector<std::ratio<1, 5>>,
       std::conditional<STRINGVIEWIFY(SELECTOR) == "depo",
         DEPO_T,
       std::conditional<STRINGVIEWIFY(SELECTOR) == "ranked",
