@@ -2,8 +2,24 @@
 PROJECT := depo-consensus
 EMP_DIR := ../Empirical/source
 
+PROJECT_HASH := $(shell git rev-parse --short HEAD)
+PROJECT_DIRTY := $(shell \
+    ( git diff-index --quiet HEAD -- && echo "-clean" || echo "-dirty" ) \
+    | tr -d '\040\011\012\015' \
+  )
+
+EMPIRICAL_HASH := $(shell cd ../Empirical && git rev-parse --short HEAD)
+EMPIRICAL_DIRTY := $(shell \
+    cd ../Empirical \
+    && ( git diff-index --quiet HEAD -- && echo "-clean" || echo "-dirty" ) \
+    | tr -d '\040\011\012\015' \
+	)
+
 # Flags to use regardless of compiler
-CFLAGS_all := -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/
+CFLAGS_all := -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/              \
+	-DPROJECT_HASH_=$(PROJECT_HASH)$(PROJECT_DIRTY) \
+	-DEMPIRICAL_HASH_=$(EMPIRICAL_HASH)$(EMPIRICAL_DIRTY)
+
 
 # Native compiler information
 CXX_nat := g++
