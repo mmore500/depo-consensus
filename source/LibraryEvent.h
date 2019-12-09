@@ -43,6 +43,33 @@ public:
         }
       );
 
+      el.AddEvent(
+        "SendMsg",
+        [](hardware_t & hw, const event_t & event){
+          const double depo_amt = event.msg.at(
+            std::numeric_limits<int>::max()
+          );
+          hw.GetMatchBin().GetSelector().SetCurDePoAmt(depo_amt);
+
+          hw.SpawnCore(event.affinity, hw.GetMinBindThresh(), event.msg);
+        },
+        "Send message event."
+      );
+
+      el.RegisterDispatchFun(
+        "SendMsg",
+        [](hardware_t & hw, const event_t & event) {
+          FrameHardware &fh = *hw.GetTrait();
+
+          auto & neighs = fh.GetNeighs();
+
+          neighs[
+            hw.GetRandom().GetUInt(neighs.size())
+          ].get().TakeMessage(event);
+
+        }
+      );
+
       std::cout << "Event Library Size: " << el.GetSize() << std::endl;
 
     }

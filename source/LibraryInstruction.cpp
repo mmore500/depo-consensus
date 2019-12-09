@@ -112,6 +112,48 @@ void LibraryInstruction::InitMatchBinRelated(inst_lib_t &il) {
   );
 
   il.AddInst(
+    "SendMsgBig",
+    [](hardware_t & hw, const inst_t & inst){
+      state_t & state = hw.GetCurState();
+
+      const double depo_amt = 1.0 + std::tanh(
+         state.GetLocal(inst.args[0])
+      );
+      state.output_mem[
+        std::numeric_limits<int>::max()
+      ] = depo_amt;
+
+      hw.TriggerEvent("SendMsg", inst.affinity, state.output_mem);
+    },
+    1,
+    "Send a message to one random neighbor.",
+    emp::ScopeType::BASIC,
+    0,
+    {"affinity"}
+  );
+
+  il.AddInst(
+    "SendMsgSmall",
+    [](hardware_t & hw, const inst_t & inst){
+      state_t & state = hw.GetCurState();
+
+      const double depo_amt = 1.0 + std::tanh(
+        state.GetLocal(inst.args[0]) - 0.5
+      );
+      state.output_mem[
+        std::numeric_limits<int>::max()
+      ] = depo_amt;
+
+      hw.TriggerEvent("SendMsg", inst.affinity, state.output_mem);
+    },
+    1,
+    "Send a message to one random neighbor.",
+    emp::ScopeType::BASIC,
+    0,
+    {"affinity"}
+  );
+
+  il.AddInst(
     "Call",
     [](hardware_t & hw, const inst_t & inst){
 
