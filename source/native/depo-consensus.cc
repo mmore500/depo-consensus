@@ -84,7 +84,7 @@ int main()
   }
 
   for (size_t g = 0; g < GENS; ++g) {
-    emp::TournamentSelect(grid_world, 7, 100);
+    emp::TournamentSelect(grid_world, 2, 100);
     grid_world.Update();
     std::cout << "." << std::flush;
   }
