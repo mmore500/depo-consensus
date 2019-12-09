@@ -23,9 +23,6 @@
 
 void run(const Config &cfg) {
 
-  constexpr size_t POP_SIZE = 100;
-  constexpr size_t GENS = 10000;
-
   emp::Random random(cfg.SEED());
 
   emp::World<Config::program_t> world(random);
@@ -62,7 +59,7 @@ void run(const Config &cfg) {
   );
   world.SetAutoMutate();
 
-  for (size_t i = 0; i < POP_SIZE; ++i) {
+  for (size_t i = 0; i < cfg.POP_SIZE(); ++i) {
     world.InjectAt(
       emp::GenRandSignalGPProgram<
         Config::TAG_WIDTH,
@@ -79,8 +76,8 @@ void run(const Config &cfg) {
     );
   }
 
-  for (size_t g = 0; g < GENS; ++g) {
-    emp::TournamentSelect(world, 2, 100);
+  for (size_t g = 0; g < cfg.GENERATIONS(); ++g) {
+    emp::TournamentSelect(world, cfg.TOURNAMENT_SIZE(), cfg.POP_SIZE());
     world.Update();
     std::cout << "." << std::flush;
   }

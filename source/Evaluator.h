@@ -54,11 +54,15 @@ public:
   double EvaluateOnce(const size_t underlying_state) {
 
     emp::vector<size_t> yeps(
-      underlying_state ? frames.size() - 1 : 1,
+      underlying_state
+        ? frames.size() - cfg.CONFUSED_COUNT()
+        : cfg.CONFUSED_COUNT(),
       1
     );
     emp::vector<size_t> nopes(
-      !underlying_state ? frames.size() - 1 : 1,
+      !underlying_state
+        ? frames.size() - cfg.CONFUSED_COUNT()
+        : cfg.CONFUSED_COUNT(),
       0
     );
 
@@ -79,7 +83,7 @@ public:
       frame->SetState(shuffler[i]);
     }
 
-    for (size_t step = 0; step < 8; ++step) {
+    for (size_t step = 0; step < cfg.STEPS_PER_EVAL(); ++step) {
       for (auto & frame : frames) {
         frame->Step(step);
       }

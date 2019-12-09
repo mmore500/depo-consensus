@@ -10,8 +10,14 @@ EMP_BUILD_CONFIG(
 
   GROUP(CORE, "Core settings for DISHTINY"),
   VALUE(SEED, int, 1, "Random number generator seed."),
+  VALUE(POP_SIZE, size_t, 100, "TODO"),
+  VALUE(TOURNAMENT_SIZE, size_t, 2, "TODO"),
+  VALUE(GENERATIONS, size_t, 1000, "TODO"),
+  VALUE(TICKS_PER_STEP, size_t, 8, "TODO"),
+  VALUE(STEPS_PER_EVAL, size_t, 16, "TODO"),
   VALUE(GRID_H, size_t, 3, "How many tiles tall should the grid be?"),
   VALUE(GRID_W, size_t, 3, "How many tiles wide should the grid be?"),
+  VALUE(CONFUSED_COUNT, size_t, 1, "How many cells have incorrect sensor information?"),
 
   GROUP(PROGRAM_GROUP, "SignalGP program Settings"),
   VALUE(PROGRAM_MAX_FUN_CNT__INIT, size_t, 16, "Used for generating SGP programs. At most, how many functions do we generate?"),
@@ -23,13 +29,9 @@ EMP_BUILD_CONFIG(
 
   GROUP(HARDWARE_GROUP, "SignalGP Hardware Settings"),
   VALUE(HARDWARE_STEPS, size_t, 16, "How many hardware steps to run per update?"),
-  VALUE(ENVIRONMENT_SIGNALS, bool, true, "Can environment signals trigger functions?"),
-  VALUE(ACTIVE_SENSORS, bool, true, "Do agents have function active sensors?"),
   VALUE(HW_MAX_CORES, size_t, 8, "Max number of hardware cores; i.e., max number of simultaneous threads of execution hardware will support."),
   VALUE(HW_MAX_CALL_DEPTH, size_t, 128, "Max call depth of a hardware unit."),
   VALUE(INBOX_CAPACITY, size_t, 16, "Capacity of a cell's messaging inbox."),
-  VALUE(ENV_TRIG_FREQ, size_t, 8, "How often to fire environmental trigger events?"),
-  VALUE(COMPUTE_FREQ, size_t, 4, "How often to step the CPUs?"),
 
   GROUP(MUTATION_GROUP, "SignalGP Mutation Settings"),
   VALUE(MUTATION_RATE, double, 0.01, "What percentage of offspring should experience mutations?"),

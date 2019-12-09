@@ -74,7 +74,7 @@ void FrameHardware::Step(const size_t step) {
   }
 
   // compute!
-  for (size_t i = 0; i < 16; ++i) {
+  for (size_t i = 0; i < cfg.TICKS_PER_STEP(); ++i) {
     cpu.SingleProcess();
   }
 
