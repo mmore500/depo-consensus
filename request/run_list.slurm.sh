@@ -22,8 +22,8 @@ SELECTOR=$(python3 -c "print(                                                  \
 
 TREATMENT="confused=${CONFUSED_COUNT}+selector=${SELECTOR}"
 
-OUTPUT_DIR="/mnt/scratch/mmore500/dishtiny/${TREATMENT}/${SEED}/"
-CONFIG_DIR="/mnt/home/mmore500/dishtiny/request/${SELECTOR}"
+OUTPUT_DIR="/mnt/scratch/mmore500/depo-consensus/${TREATMENT}/${SEED}/"
+CONFIG_DIR="/mnt/home/mmore500/depo-consensus/request/${SELECTOR}"
 
 echo "   TREATMENT" $TREATMENT
 echo "   CONFUSED_COUNT" $CONFUSED_COUNT
