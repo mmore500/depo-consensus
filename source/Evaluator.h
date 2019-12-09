@@ -113,12 +113,13 @@ public:
       }
     );
 
-    return (
+    if (correctness_score == frames.size()) return 1.0;
+    else return (
       correctness_score
         + (
-          guess_score + talking_score / frames.size()
-        ) / frames.size()
-    ) / frames.size();
+          guess_score + talking_score / (frames.size() + 1)
+        ) / (frames.size() + 1)
+    ) / (frames.size() + 1);
 
   }
 
