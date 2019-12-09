@@ -46,7 +46,7 @@ void run(const Config &cfg) {
     cfg
   );
   world.SetFitFun(
-    [&eval, &world](Config::program_t & org){
+    [&](Config::program_t & org){
       double res = 0.0;
       const size_t reps = (
         world.GetUpdate() == cfg.GENERATIONS() - 1
