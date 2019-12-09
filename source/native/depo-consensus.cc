@@ -46,8 +46,17 @@ void run(const Config &cfg) {
     cfg
   );
   world.SetFitFun(
-    [&eval](Config::program_t & org){
-      return eval.Evaluate(org);
+    [&eval, &world](Config::program_t & org){
+      double res = 0.0;
+      const size_t reps = (
+        world.GetUpdate() == cfg.GENERATIONS() - 1
+        ? 100 // do more evaluations on last update
+        : 1
+      );
+      for (size_t rep = 0; rep < reps; ++rep) {
+        res += eval.Evaluate(org);
+      }
+      return res / reps;
     }
   );
 
