@@ -27,7 +27,6 @@ void run(const Config &cfg) {
 
   emp::World<Config::program_t> world(random);
 
-  world.SetupFitnessFile();
   world.AddSystematics(
     emp::NewPtr<emp::Systematics<Config::program_t,Config::program_t>>(
       [](Config::program_t & o){return o;},
