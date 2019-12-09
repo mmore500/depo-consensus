@@ -17,7 +17,7 @@ CONFUSED_COUNT=$(python3 -c "print(                                            \
   ${SLURM_ARRAY_TASK_ID} % 5                                                   \
 )")
 SELECTOR=$(python3 -c "print(                                                  \
- 'sieve' if ${SLURM_ARRAY_TASK_ID} % 2 else 'depo'                             \
+ ['ranked', 'sieve', 'depo'][${SLURM_ARRAY_TASK_ID} % 3]                       \
 )")
 
 TREATMENT="confused=${CONFUSED_COUNT}+selector=${SELECTOR}"
