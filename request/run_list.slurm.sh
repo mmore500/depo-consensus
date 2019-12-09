@@ -20,12 +20,12 @@ SELECTOR=$(python3 -c "print(                                                  \
  ['ranked', 'sieve', 'depo'][${SLURM_ARRAY_TASK_ID} % 3]                       \
 )")
 
-TREATMENT="confused=${CONFUSED_COUNT}+selector=${SELECTOR}"
+REPLICATE="confused=${CONFUSED_COUNT}+selector=${SELECTOR}+seed=${SEED}"
 
-OUTPUT_DIR="/mnt/scratch/mmore500/depo-consensus/${TREATMENT}/${SEED}/"
+OUTPUT_DIR="/mnt/scratch/mmore500/depo-consensus/${REPLICATE}/"
 CONFIG_DIR="/mnt/home/mmore500/depo-consensus/request/${SELECTOR}"
 
-echo "   TREATMENT" $TREATMENT
+echo "   REPLICATE" $REPLICATE
 echo "   CONFUSED_COUNT" $CONFUSED_COUNT
 echo "   SELECTOR" $SELECTOR
 echo "   SEED" $SEED
