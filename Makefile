@@ -16,7 +16,7 @@ EMPIRICAL_DIRTY := $(shell \
 	)
 
 # Flags to use regardless of compiler
-CFLAGS_all := -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/              \
+CFLAGS_all := -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/ $(ARGS)      \
 	-DPROJECT_HASH_=$(PROJECT_HASH)$(PROJECT_DIRTY) \
 	-DEMPIRICAL_HASH_=$(EMPIRICAL_HASH)$(EMPIRICAL_DIRTY)
 
