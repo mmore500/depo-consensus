@@ -52,13 +52,6 @@ public:
   }
 
   double EvaluateOnce(const size_t underlying_state) {
-    // const double state_probability = (
-    //   underlying_state
-    //   ? 0.9
-    //   : 0.1
-    // );
-    // emp::vector<size_t> yeps(state_probability *frames.size(), 1);
-    // emp::vector<size_t> nopes(frames.size() - yeps.size(), 0);
 
     emp::vector<size_t> yeps(
       underlying_state ? frames.size() - 1 : 1,
@@ -86,13 +79,11 @@ public:
       frame->SetState(shuffler[i]);
     }
 
-    for (size_t step = 0; step < 32; ++step) {
+    for (size_t step = 0; step < 8; ++step) {
       for (auto & frame : frames) {
         frame->Step(step);
       }
     }
-
-    // for (auto & frame : frames) frame->SetGuess(underlying_state);
 
     const double correctness_score = std::count_if(
       std::begin(frames),
