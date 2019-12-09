@@ -77,6 +77,7 @@ public:
       >::type
       >::type
       >::type
+      >::type
 #else
     , DEPO_T
 #endif
