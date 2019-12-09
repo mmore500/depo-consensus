@@ -29,7 +29,7 @@ void run(const Config &cfg) {
 
   world.SetupFitnessFile();
   world.AddSystematics(
-    emp::NewPtr<emp::Systematics<Config::program_t,Config::program_t>>(
+    emp::NewPtr<emp::Systematics<Config::program_t, Config::program_t>>(
       [](Config::program_t & o){return o;},
       true,
       true,

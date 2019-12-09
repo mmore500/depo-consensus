@@ -130,7 +130,8 @@ public:
   double Evaluate(const Config::program_t & org) {
 
     SetProgram(org);
-    return (EvaluateOnce(0) + EvaluateOnce(1)) / 2;
+
+    return (EvaluateOnce(0) + EvaluateOnce(1)) / 2.0;
 
   }
 
