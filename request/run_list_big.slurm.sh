@@ -49,7 +49,7 @@ cd ${OUTPUT_DIR}
 echo "Do Work"
 ################################################################################
 module purge; module load GCC/8.2.0-2.31.1 OpenMPI/3.1.3 HDF5/1.10.4;
-./depo-consensus
+./depo-consensus                                                               \
   -SEED ${SEED}                                                                \
   -CONFUSED_COUNT ${CONFUSED_COUNT}                                            \
   -CONFUSED_COUNT_2ND ${CONFUSED_COUNT_2ND}                                    \
