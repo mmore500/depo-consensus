@@ -10,7 +10,8 @@ for filename in filenames:
     df = pd.read_csv(filename)
 
     for k, v in kn.unpack(filename).items():
-        df[k] = v
+        if k not in ['_', 'ext']:
+            df[k] = v
 
     dataframes.append(df)
 
