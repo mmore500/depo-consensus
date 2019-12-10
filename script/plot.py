@@ -1,7 +1,11 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import matplotlib
 import sys
+
+matplotlib.rcParams['pdf.fonttype'] = 42
+sns.set(style='whitegrid')
 
 # import dataset
 data = pd.read_csv(sys.argv[1])

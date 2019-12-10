@@ -2,10 +2,6 @@ from keyname import keyname as kn
 import sys
 import pandas as pd
 
-matplotlib.rcParams['pdf.fonttype'] = 42
-sns.set(style='whitegrid')
-
-
 filenames = sys.argv[1:]
 
 dataframes = []
