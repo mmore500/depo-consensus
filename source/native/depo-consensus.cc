@@ -21,7 +21,7 @@
 #include "../LibraryInstruction.cpp"
 
 
-void run(const Config &cfg) {
+void run(Config &cfg) {
 
   emp::Random random(cfg.SEED());
 
@@ -49,10 +49,16 @@ void run(const Config &cfg) {
     [&](Config::program_t & org){
       double res = 0.0;
       const size_t reps = (
-        world.GetUpdate() == cfg.GENERATIONS() - 1
-        ? 100 // do more evaluations on last update
+        world.GetUpdate() >= cfg.GENERATIONS() - 2
+        ? 100 // do more evaluations on last two updates
         : 1
       );
+      if (world.GetUpdate() == cfg.GENERATIONS() - 1) {
+        // do alternate grid on the last update
+        cfg.Set("GRID_W", emp::to_string(cfg.GRID_W_2ND()));
+        cfg.Set("GRID_H", emp::to_string(cfg.GRID_H_2ND()));
+        cfg.Set("CONFUSED_COUNT", emp::to_string(cfg.CONFUSED_COUNT_2ND()));
+      }
       for (size_t rep = 0; rep < reps; ++rep) {
         res += eval.Evaluate(org);
       }
