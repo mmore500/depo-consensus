@@ -2,7 +2,7 @@
 ########## Define Resources Needed with SBATCH Lines ##########
 #SBATCH --time=16:00:00         # limit of wall clock time - how long the job will run (same as -t)
 #SBATCH --array=0-149
-#SBATCH --mem=2G                # memory required per node - amount of memory (in bytes)
+#SBATCH --mem=8G                # memory required per node - amount of memory (in bytes)
 #SBATCH --job-name depo-consensus-big     # you can give your job a name for easier identification (same as -J)
 #SBATCH --account=devolab
 #SBATCH --output="/mnt/home/mmore500/slurmlogs/slurm-%A_%a.out"
