@@ -17,7 +17,7 @@ data["Upper Quartile Fitness"] = data["upper_quartile_fitness"]
 data["Selector"] = data["selector"]
 
 sns.barplot(
-    data=data[data["Update"] == 999],
+    data=data[data["Update"] == data["Update"].max()],
     x="Problem Difficulty",
     y="Best Fitness",
     hue="Selector",
@@ -30,7 +30,7 @@ plt.clf()
 
 
 sns.swarmplot(
-    data=data[data["Update"] == 999],
+    data=data[data["Update"] == data["Update"].max()],
     x="Problem Difficulty",
     y="Best Fitness",
     hue="Selector",
@@ -43,7 +43,7 @@ plt.clf()
 
 sns.countplot(
     data=data[
-            (data["Update"] == 999)
+            (data["Update"] == data["Update"].max())
             & (data["Best Fitness"] == 1)
         ],
     x="Problem Difficulty",
