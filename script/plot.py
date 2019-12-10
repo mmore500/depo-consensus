@@ -97,3 +97,26 @@ sns.countplot(
 plt.savefig("depo-consensus-countplot-secondary.pdf")
 
 plt.clf()
+
+# LINEPLOT #####################################################################
+
+
+g = sns.FacetGrid(
+    data=data[
+        (data["Update"].mod(100) == 0)
+        & (data["Update"] < data["Update"].max()-1)
+    ],
+    col="Problem Difficulty",
+    row="Selector",
+    hue="Selector",
+    margin_titles=True,
+)
+
+g.map(
+    sns.lineplot,
+    "Update",
+    "Upper Quartile Fitness",
+)
+
+# save to disk
+plt.savefig("depo-consensus-lineplot.pdf")
