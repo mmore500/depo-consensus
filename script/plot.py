@@ -12,13 +12,14 @@ data = pd.read_csv(sys.argv[1])
 
 data["Update"] = data["update"]
 data["Problem Difficulty"] = data["confused"]
+data["Best Fitness"] = data["max_fitness"]
 data["Upper Quartile Fitness"] = data["upper_quartile_fitness"]
 data["Selector"] = data["selector"]
 
 sns.barplot(
     data=data[data["Update"] == 999],
     x="Problem Difficulty",
-    y="Upper Quartile Fitness",
+    y="Best Fitness",
     hue="Selector",
 )
 
@@ -31,7 +32,7 @@ plt.clf()
 sns.swarmplot(
     data=data[data["Update"] == 999],
     x="Problem Difficulty",
-    y="Upper Quartile Fitness",
+    y="Best Fitness",
     hue="Selector",
 )
 
@@ -43,7 +44,7 @@ plt.clf()
 sns.countplot(
     data=data[
             (data["Update"] == 999)
-            & (data["Upper Quartile Fitness"] == 1)
+            & (data["Best Fitness"] == 1)
         ],
     x="Problem Difficulty",
     hue="Selector",
