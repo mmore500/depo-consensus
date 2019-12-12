@@ -55,7 +55,7 @@ module purge; module load GCC/8.2.0-2.31.1 OpenMPI/3.1.3 HDF5/1.10.4;
   -CONFUSED_COUNT_2ND ${CONFUSED_COUNT_2ND}                                    \
   -GRID_W 9 -GRID_H 9                                                          \
   -GRID_W_2ND 3 -GRID_H_2ND 3                                                  \
-  -GENERATIONS 501                                                             \
+  -GENERATIONS 1002                                                             \
   >run.log 2>&1
 
 ###############################################################################
