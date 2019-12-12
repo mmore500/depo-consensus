@@ -39,7 +39,7 @@ void run(Config &cfg) {
   // );
   // world.SetupSystematicsFile("systematics");
 
-  Evaluator eval(
+  std::unique_ptr<Evaluator> eval = std::make_unique<Evaluator>(
     LibraryInstruction::Make(cfg),
     LibraryEvent::Make(cfg),
     random,
@@ -58,9 +58,15 @@ void run(Config &cfg) {
         cfg.Set("GRID_W", emp::to_string(cfg.GRID_W_2ND()));
         cfg.Set("GRID_H", emp::to_string(cfg.GRID_H_2ND()));
         cfg.Set("CONFUSED_COUNT", emp::to_string(cfg.CONFUSED_COUNT_2ND()));
+        eval = std::make_unique<Evaluator>(
+          LibraryInstruction::Make(cfg),
+          LibraryEvent::Make(cfg),
+          random,
+          cfg
+        );
       }
       for (size_t rep = 0; rep < reps; ++rep) {
-        res += eval.Evaluate(org);
+        res += eval->Evaluate(org);
       }
       return res / reps;
     }
