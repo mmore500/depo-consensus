@@ -251,7 +251,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         palette=list(reversed(sns.color_palette())),
         dodge=True,
     )
-    g.add_legend(title="Evaluation Grid Dimensions")
+    g.add_legend(title="Evaluation Grid\nDimensions")
 
     # save to disk
     outfile = "depo-consensus+" +  kn.pack({
@@ -284,7 +284,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         palette=list(reversed(sns.color_palette())),
         dodge=True,
     )
-    g.add_legend(title="Evaluation Grid Dimensions")
+    g.add_legend(title="Evaluation Grid\nDimensions")
 
     # save to disk
     outfile = "depo-consensus+" + kn.pack({
