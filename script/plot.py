@@ -186,6 +186,8 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         bbox_to_anchor=(1.3, 0.5),
         ncol=1
     )
+    g.set_ylabel("Perfect Solution Count")
+
 
     # save to disk
     outfile = "depo-consensus+" +  kn.pack({
@@ -219,6 +221,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         bbox_to_anchor=(1.3, 0.5),
         ncol=1
     )
+    g.set_ylabel("Perfect Solution Count")
 
     # save to disk
     outfile = "depo-consensus+" +  kn.pack({
@@ -315,7 +318,11 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
     # https://stackoverflow.com/a/44035405
     def countplot(x, hue, **kwargs):
-        sns.countplot(x=x, hue=hue, **kwargs)
+        sns.countplot(
+            x=x, hue=hue, **kwargs
+        ).set_ylabel(
+            "Perfect Solution Count"
+        )
     g.map(
         countplot,
         "Problem Difficulty",
