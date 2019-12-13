@@ -48,7 +48,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
     box = g.get_position()
     g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
-    g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
+    g.legend(
+        title="Selector",
+        loc='center right',
+        bbox_to_anchor=(1.3, 0.5),
+        ncol=1
+    )
 
     # save to disk
     outfile = "depo-consensus+" +  kn.pack({
@@ -70,7 +75,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
     box = g.get_position()
     g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
-    g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
+    g.legend(
+        title="Selector",
+        loc='center right',
+        bbox_to_anchor=(1.3, 0.5),
+        ncol=1
+    )
 
 
     # save to disk
@@ -94,7 +104,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
     box = g.get_position()
     g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
-    g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
+    g.legend(
+        title="Selector",
+        loc='center right',
+        bbox_to_anchor=(1.3, 0.5),
+        ncol=1
+    )
 
     # save to disk
     outfile = "depo-consensus+" +  kn.pack({
@@ -115,7 +130,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
     box = g.get_position()
     g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
-    g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
+    g.legend(
+        title="Selector",
+        loc='center right',
+        bbox_to_anchor=(1.3, 0.5),
+        ncol=1
+    )
 
     # save to disk
     outfile = "depo-consensus+" +  kn.pack({
@@ -140,7 +160,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
     box = g.get_position()
     g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
-    g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
+    g.legend(
+        title="Selector",
+        loc='center right',
+        bbox_to_anchor=(1.3, 0.5),
+        ncol=1
+    )
 
     # save to disk
     outfile = "depo-consensus+" +  kn.pack({
@@ -163,7 +188,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
     box = g.get_position()
     g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
-    g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
+    g.legend(
+        title="Selector",
+        loc='center right',
+        bbox_to_anchor=(1.3, 0.5),
+        ncol=1
+    )
 
     # save to disk
     outfile = "depo-consensus+" +  kn.pack({
