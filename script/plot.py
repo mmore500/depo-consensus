@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import sys
 from keyname import keyname as kn
+import itertools
 matplotlib.rcParams['pdf.fonttype'] = 42
 sns.set(style='whitegrid')
 
@@ -16,7 +17,7 @@ data_in["Best Fitness"] = data_in["max_fitness"]
 data_in["Upper Quartile Fitness"] = data_in["upper_quartile_fitness"]
 data_in["Selector"] = data_in["selector"]
 
-for size in "big", "small":
+for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
 
     data_fil = data_in[data_in["size"] == size]
 
@@ -39,7 +40,7 @@ for size in "big", "small":
     outfile = kn.pack({
         "size" : size,
         "title" : "depo-consensus-barplot",
-        "ext" : ".pdf",
+        "ext" : ext,
     })
     plt.savefig(outfile)
 
@@ -63,7 +64,7 @@ for size in "big", "small":
     outfile = kn.pack({
         "size" : size,
         "title" : "depo-consensus-barplot-secondary",
-        "ext" : ".pdf",
+        "ext" : ext,
     })
     plt.savefig(outfile)
 
@@ -87,7 +88,7 @@ for size in "big", "small":
     outfile = kn.pack({
         "size" : size,
         "title" : "depo-consensus-swarmplot",
-        "ext" : ".pdf",
+        "ext" : ext,
     })
     plt.savefig(outfile)
 
@@ -109,7 +110,7 @@ for size in "big", "small":
     outfile = kn.pack({
         "size" : size,
         "title" : "depo-consensus-swarmplot-secondary",
-        "ext" : ".pdf",
+        "ext" : ext,
     })
     plt.savefig(outfile)
 
@@ -135,7 +136,7 @@ for size in "big", "small":
     outfile = kn.pack({
         "size" : size,
         "title" : "depo-consensus-countplot",
-        "ext" : ".pdf",
+        "ext" : ext,
     })
     plt.savefig(outfile)
 
@@ -159,7 +160,7 @@ for size in "big", "small":
     outfile = kn.pack({
         "size" : size,
         "title" : "depo-consensus-countplot-secondary",
-        "ext" : ".pdf",
+        "ext" : ext,
     })
     plt.savefig(outfile)
 
@@ -189,7 +190,7 @@ for size in "big", "small":
     outfile = kn.pack({
         "size" : size,
         "title" : "depo-consensus-lineplot",
-        "ext" : ".pdf",
+        "ext" : ext,
     })
     plt.savefig(outfile)
 
