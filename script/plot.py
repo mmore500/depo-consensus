@@ -51,7 +51,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.legend(
         title="Selector",
         loc='center right',
-        bbox_to_anchor=(1.3, 0.5),
+        bbox_to_anchor=(1.2, 0.5),
         ncol=1
     )
 
@@ -61,6 +61,8 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "barplot",
         "ext" : ext,
     })
+    plt.gcf().set_figwidth(11)
+    plt.gcf().set_figheight(3)
     plt.savefig(
         outfile,
         transparent=True,
@@ -83,7 +85,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.legend(
         title="Selector",
         loc='center right',
-        bbox_to_anchor=(1.3, 0.5),
+        bbox_to_anchor=(1.2, 0.5),
         ncol=1
     )
 
@@ -94,6 +96,8 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "barplot-secondary",
         "ext" : ext,
     })
+    plt.gcf().set_figwidth(11)
+    plt.gcf().set_figheight(3)
     plt.savefig(
         outfile,
         transparent=True,
@@ -117,7 +121,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.legend(
         title="Selector",
         loc='center right',
-        bbox_to_anchor=(1.3, 0.5),
+        bbox_to_anchor=(1.2, 0.5),
         ncol=1
     )
 
@@ -127,6 +131,8 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "swarmplot",
         "ext" : ext,
     })
+    plt.gcf().set_figwidth(11)
+    plt.gcf().set_figheight(3)
     plt.savefig(
         outfile,
         transparent=True,
@@ -148,7 +154,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.legend(
         title="Selector",
         loc='center right',
-        bbox_to_anchor=(1.3, 0.5),
+        bbox_to_anchor=(1.2, 0.5),
         ncol=1
     )
 
@@ -158,6 +164,8 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "swarmplot-secondary",
         "ext" : ext,
     })
+    plt.gcf().set_figwidth(11)
+    plt.gcf().set_figheight(3)
     plt.savefig(
         outfile,
         transparent=True,
@@ -183,7 +191,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.legend(
         title="Selector",
         loc='center right',
-        bbox_to_anchor=(1.3, 0.5),
+        bbox_to_anchor=(1.2, 0.5),
         ncol=1
     )
     g.set_ylabel("Perfect Solution Count")
@@ -195,6 +203,8 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "countplot",
         "ext" : ext,
     })
+    plt.gcf().set_figwidth(11)
+    plt.gcf().set_figheight(3)
     plt.savefig(
         outfile,
         transparent=True,
@@ -218,7 +228,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.legend(
         title="Selector",
         loc='center right',
-        bbox_to_anchor=(1.3, 0.5),
+        bbox_to_anchor=(1.2, 0.5),
         ncol=1
     )
     g.set_ylabel("Perfect Solution Count")
@@ -229,6 +239,8 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "countplot-secondary",
         "ext" : ext,
     })
+    plt.gcf().set_figwidth(11)
+    plt.gcf().set_figheight(3)
     plt.savefig(
         outfile,
         transparent=True,
@@ -297,6 +309,8 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "facetbarplot",
         "ext" : ext,
     })
+    plt.gcf().set_figwidth(11)
+    plt.gcf().set_figheight(3)
     plt.savefig(
         outfile,
         transparent=True,
@@ -339,6 +353,8 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "facetcountplot",
         "ext" : ext,
     })
+    plt.gcf().set_figwidth(11)
+    plt.gcf().set_figheight(3)
     plt.savefig(
         outfile,
         transparent=True,
