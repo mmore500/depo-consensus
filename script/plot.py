@@ -61,7 +61,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "barplot",
         "ext" : ext,
     })
-    plt.savefig(outfile)
+    plt.savefig(
+        outfile,
+        transparent=True,
+        bbox_inches='tight',
+        pad_inches=0,
+    )
 
     plt.clf()
 
@@ -89,7 +94,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "barplot-secondary",
         "ext" : ext,
     })
-    plt.savefig(outfile)
+    plt.savefig(
+        outfile,
+        transparent=True,
+        bbox_inches='tight',
+        pad_inches=0,
+    )
 
     plt.clf()
 
@@ -117,7 +127,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "swarmplot",
         "ext" : ext,
     })
-    plt.savefig(outfile)
+    plt.savefig(
+        outfile,
+        transparent=True,
+        bbox_inches='tight',
+        pad_inches=0,
+    )
 
     plt.clf()
 
@@ -143,7 +158,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "swarmplot-secondary",
         "ext" : ext,
     })
-    plt.savefig(outfile)
+    plt.savefig(
+        outfile,
+        transparent=True,
+        bbox_inches='tight',
+        pad_inches=0,
+    )
 
     plt.clf()
 
@@ -173,7 +193,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "countplot",
         "ext" : ext,
     })
-    plt.savefig(outfile)
+    plt.savefig(
+        outfile,
+        transparent=True,
+        bbox_inches='tight',
+        pad_inches=0,
+    )
 
     plt.clf()
 
@@ -201,7 +226,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "countplot-secondary",
         "ext" : ext,
     })
-    plt.savefig(outfile)
+    plt.savefig(
+        outfile,
+        transparent=True,
+        bbox_inches='tight',
+        pad_inches=0,
+    )
 
     plt.clf()
 
@@ -231,7 +261,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "lineplot",
         "ext" : ext,
     })
-    plt.savefig(outfile)
+    plt.savefig(
+        outfile,
+        transparent=True,
+        bbox_inches='tight',
+        pad_inches=0,
+    )
 
     plt.clf()
 
@@ -259,7 +294,12 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "facetbarplot",
         "ext" : ext,
     })
-    plt.savefig(outfile)
+    plt.savefig(
+        outfile,
+        transparent=True,
+        bbox_inches='tight',
+        pad_inches=0,
+    )
 
     plt.clf()
 
@@ -292,6 +332,11 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "title" : "facetcountplot",
         "ext" : ext,
     })
-    plt.savefig(outfile)
+    plt.savefig(
+        outfile,
+        transparent=True,
+        bbox_inches='tight',
+        pad_inches=0,
+    )
 
     plt.clf()
