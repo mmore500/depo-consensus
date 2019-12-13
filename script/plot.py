@@ -8,6 +8,8 @@ import itertools
 matplotlib.rcParams['pdf.fonttype'] = 42
 sns.set(style='whitegrid')
 
+fig, ax1 = plt.subplots(1,1)
+
 # import dataset
 data_in = pd.read_csv(sys.argv[1])
 
@@ -24,7 +26,6 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     # BARPLOT ##################################################################
 
     # https://stackoverflow.com/a/51639516
-    fig, ax1 = plt.subplots(1,1)
     g = sns.barplot(
         data=data_fil[data_fil["Update"] == data_fil["Update"].max()-1],
         x="Problem Difficulty",
@@ -47,7 +48,6 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     plt.clf()
 
     # https://stackoverflow.com/a/51639516
-    fig, ax1 = plt.subplots(1,1)
     g = sns.barplot(
         data=data_fil[data_fil["Update"] == data_fil["Update"].max()],
         x="Problem Difficulty",
@@ -73,7 +73,6 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     # SWARMPLOT ################################################################
 
     # https://stackoverflow.com/a/51639516
-    fig, ax1 = plt.subplots(1,1)
     g = sns.swarmplot(
         data=data_fil[data_fil["Update"] == data_fil["Update"].max()-1],
         x="Problem Difficulty",
@@ -95,7 +94,6 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     plt.clf()
 
     # https://stackoverflow.com/a/51639516
-    fig, ax1 = plt.subplots(1,1)
     g = sns.swarmplot(
         data=data_fil[data_fil["Update"] == data_fil["Update"].max()],
         x="Problem Difficulty",
@@ -119,7 +117,6 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     # COUNTPLOT ################################################################
 
     # https://stackoverflow.com/a/51639516
-    fig, ax1 = plt.subplots(1,1)
     g = sns.countplot(
         data=data_fil[
                 (data_fil["Update"] == data_fil["Update"].max()-1)
@@ -143,7 +140,6 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     plt.clf()
 
     # https://stackoverflow.com/a/51639516
-    fig, ax1 = plt.subplots(1,1)
     g = sns.countplot(
         data=data_fil[
                 (data_fil["Update"] == data_fil["Update"].max())
