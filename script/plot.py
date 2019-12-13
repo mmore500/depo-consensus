@@ -50,9 +50,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
 
     # save to disk
-    outfile = kn.pack({
+    outfile = "depo-consensus+" +  kn.pack({
         "size" : size,
-        "title" : "depo-consensus-barplot",
+        "title" : "barplot",
         "ext" : ext,
     })
     plt.savefig(outfile)
@@ -73,9 +73,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
 
 
     # save to disk
-    outfile = kn.pack({
+    outfile = "depo-consensus+" +  kn.pack({
         "size" : size,
-        "title" : "depo-consensus-barplot-secondary",
+        "title" : "barplot-secondary",
         "ext" : ext,
     })
     plt.savefig(outfile)
@@ -96,9 +96,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
 
     # save to disk
-    outfile = kn.pack({
+    outfile = "depo-consensus+" +  kn.pack({
         "size" : size,
-        "title" : "depo-consensus-swarmplot",
+        "title" : "swarmplot",
         "ext" : ext,
     })
     plt.savefig(outfile)
@@ -117,9 +117,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
 
     # save to disk
-    outfile = kn.pack({
+    outfile = "depo-consensus+" +  kn.pack({
         "size" : size,
-        "title" : "depo-consensus-swarmplot-secondary",
+        "title" : "swarmplot-secondary",
         "ext" : ext,
     })
     plt.savefig(outfile)
@@ -142,9 +142,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
 
     # save to disk
-    outfile = kn.pack({
+    outfile = "depo-consensus+" +  kn.pack({
         "size" : size,
-        "title" : "depo-consensus-countplot",
+        "title" : "countplot",
         "ext" : ext,
     })
     plt.savefig(outfile)
@@ -165,9 +165,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
 
     # save to disk
-    outfile = kn.pack({
+    outfile = "depo-consensus+" +  kn.pack({
         "size" : size,
-        "title" : "depo-consensus-countplot-secondary",
+        "title" : "countplot-secondary",
         "ext" : ext,
     })
     plt.savefig(outfile)
@@ -195,9 +195,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
 
     # save to disk
-    outfile = kn.pack({
+    outfile = "depo-consensus+" +  kn.pack({
         "size" : size,
-        "title" : "depo-consensus-lineplot",
+        "title" : "lineplot",
         "ext" : ext,
     })
     plt.savefig(outfile)
@@ -223,9 +223,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.add_legend(title="Evaluation Grid Dimensions")
 
     # save to disk
-    outfile = kn.pack({
+    outfile = "depo-consensus+" +  kn.pack({
         "size" : size,
-        "title" : "depo-consensus-facetbarplot",
+        "title" : "facetbarplot",
         "ext" : ext,
     })
     plt.savefig(outfile)
@@ -256,9 +256,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     g.add_legend(title="Evaluation Grid Dimensions")
 
     # save to disk
-    outfile = kn.pack({
+    outfile = "depo-consensus+" + kn.pack({
         "size" : size,
-        "title" : "depo-consensus-facetcountplot",
+        "title" : "facetcountplot",
         "ext" : ext,
     })
     plt.savefig(outfile)
