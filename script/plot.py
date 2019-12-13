@@ -217,7 +217,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "Best Fitness",
         "Evaluation Grid Dimensions",
         hue_order=list(map(lambda x: specific[x], ["small", "big"])),
-        palette=sns.color_palette(),
+        palette=list(reversed(sns.color_palette())),
         dodge=True,
     )
     g.add_legend(title="Evaluation Grid Dimensions")
@@ -250,7 +250,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         "Problem Difficulty",
         "Evaluation Grid Dimensions",
         hue_order=list(map(lambda x: specific[x], ["small", "big"])),
-        palette=sns.color_palette(),
+        palette=list(reversed(sns.color_palette())),
         dodge=True,
     )
     g.add_legend(title="Evaluation Grid Dimensions")
