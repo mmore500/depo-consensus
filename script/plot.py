@@ -21,7 +21,19 @@ data_in["Selector"] = data_in["selector"]
 
 for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
 
-    data_fil = data_in[data_in["size"] == size]
+    # data prep: figure out actual grid size in runs
+    data_fil = data_in[data_in["size"] == size].copy()
+    opposite = { "big" : "small", "small" : "big" }
+    specific = { "small" : "$3 \\times 3$", "big" : "$9 \\times 9$" }
+    max_upd = data_fil["Update"].max()
+    data_fil["Evaluation Grid Dimensions"] = data_fil.apply(
+        lambda row: (
+            specific[opposite[row["size"]]]
+            if row["Update"] == max_upd
+            else specific[row["size"]]
+        ),
+        axis=1
+    )
 
     # BARPLOT ##################################################################
 
@@ -186,6 +198,67 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     outfile = kn.pack({
         "size" : size,
         "title" : "depo-consensus-lineplot",
+        "ext" : ext,
+    })
+    plt.savefig(outfile)
+
+    plt.clf()
+
+    # FACET BARPLOT ############################################################
+
+    g = sns.FacetGrid(
+        data=data_fil[data_fil["Update"] > data_fil["Update"].max()-2],
+        col="Selector",
+        margin_titles=True,
+    )
+    g.map(
+        sns.barplot,
+        "Problem Difficulty",
+        "Best Fitness",
+        "Evaluation Grid Dimensions",
+        hue_order=list(map(lambda x: specific[x], ["small", "big"])),
+        palette=sns.color_palette(),
+        dodge=True,
+    )
+    g.add_legend(title="Evaluation Grid Dimensions")
+
+    # save to disk
+    outfile = kn.pack({
+        "size" : size,
+        "title" : "depo-consensus-facetbarplot",
+        "ext" : ext,
+    })
+    plt.savefig(outfile)
+
+    plt.clf()
+
+    # FACET COUNTPLOT ##########################################################
+
+    g = sns.FacetGrid(
+        data=data_fil[
+            (data_fil["Update"] > data_fil["Update"].max()-2)
+            & (data_fil["Best Fitness"] == 1)
+        ],
+        col="Selector",
+        margin_titles=True,
+    )
+    # https://stackoverflow.com/a/44035405
+    def countplot(x, hue, **kwargs):
+        sns.countplot(x=x, hue=hue, **kwargs)
+    g.map(
+        countplot,
+        "Problem Difficulty",
+        "Evaluation Grid Dimensions",
+        hue_order=list(map(lambda x: specific[x], ["small", "big"])),
+        palette=sns.color_palette(),
+        dodge=True,
+    )
+    g.add_legend(title="Evaluation Grid Dimensions")
+
+    # save to disk
+    outfile = kn.pack({
+        "size" : size,
+        "title" : "depo-consensus-facetcountplot",
         "ext" : ext,
     })
     plt.savefig(outfile)
