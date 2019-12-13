@@ -6,6 +6,7 @@ import sys
 from keyname import keyname as kn
 import itertools
 matplotlib.rcParams['pdf.fonttype'] = 42
+matplotlib.rcParams["legend.frameon"] = False
 sns.set(style='whitegrid')
 
 fig, ax1 = plt.subplots(1,1)
