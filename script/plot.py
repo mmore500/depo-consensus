@@ -22,12 +22,18 @@ for size in "big", "small":
 
     # BARPLOT ##################################################################
 
-    sns.barplot(
+    # https://stackoverflow.com/a/51639516
+    fig, ax1 = plt.subplots(1,1)
+    g = sns.barplot(
         data=data_fil[data_fil["Update"] == data_fil["Update"].max()-1],
         x="Problem Difficulty",
         y="Best Fitness",
         hue="Selector",
+        ax=ax1
     )
+    box = g.get_position()
+    g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
+    g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
 
     # save to disk
     outfile = kn.pack({
@@ -39,13 +45,19 @@ for size in "big", "small":
 
     plt.clf()
 
-    sns.barplot(
+    # https://stackoverflow.com/a/51639516
+    fig, ax1 = plt.subplots(1,1)
+    g = sns.barplot(
         data=data_fil[data_fil["Update"] == data_fil["Update"].max()],
         x="Problem Difficulty",
         y="Best Fitness",
         hue="Selector",
         ax=ax1
     )
+    box = g.get_position()
+    g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
+    g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
+
 
     # save to disk
     outfile = kn.pack({
@@ -59,12 +71,17 @@ for size in "big", "small":
 
     # SWARMPLOT ################################################################
 
-    sns.swarmplot(
+    # https://stackoverflow.com/a/51639516
+    fig, ax1 = plt.subplots(1,1)
+    g = sns.swarmplot(
         data=data_fil[data_fil["Update"] == data_fil["Update"].max()-1],
         x="Problem Difficulty",
         y="Best Fitness",
         hue="Selector",
     )
+    box = g.get_position()
+    g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
+    g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
 
     # save to disk
     outfile = kn.pack({
@@ -76,12 +93,17 @@ for size in "big", "small":
 
     plt.clf()
 
-    sns.swarmplot(
+    # https://stackoverflow.com/a/51639516
+    fig, ax1 = plt.subplots(1,1)
+    g = sns.swarmplot(
         data=data_fil[data_fil["Update"] == data_fil["Update"].max()],
         x="Problem Difficulty",
         y="Best Fitness",
         hue="Selector",
     )
+    box = g.get_position()
+    g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
+    g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
 
     # save to disk
     outfile = kn.pack({
@@ -95,7 +117,9 @@ for size in "big", "small":
 
     # COUNTPLOT ################################################################
 
-    sns.countplot(
+    # https://stackoverflow.com/a/51639516
+    fig, ax1 = plt.subplots(1,1)
+    g = sns.countplot(
         data=data_fil[
                 (data_fil["Update"] == data_fil["Update"].max()-1)
                 & (data_fil["Best Fitness"] == 1)
@@ -103,6 +127,9 @@ for size in "big", "small":
         x="Problem Difficulty",
         hue="Selector",
     )
+    box = g.get_position()
+    g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
+    g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
 
     # save to disk
     outfile = kn.pack({
@@ -114,7 +141,9 @@ for size in "big", "small":
 
     plt.clf()
 
-    sns.countplot(
+    # https://stackoverflow.com/a/51639516
+    fig, ax1 = plt.subplots(1,1)
+    g = sns.countplot(
         data=data_fil[
                 (data_fil["Update"] == data_fil["Update"].max())
                 & (data_fil["Best Fitness"] == 1)
@@ -122,6 +151,9 @@ for size in "big", "small":
         x="Problem Difficulty",
         hue="Selector",
     )
+    box = g.get_position()
+    g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
+    g.legend(loc='center right', bbox_to_anchor=(1.3, 0.5), ncol=1)
 
     # save to disk
     outfile = kn.pack({
