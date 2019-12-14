@@ -86,9 +86,12 @@ public:
 #ifdef REGULATOR
     , std::conditional<STRINGVIEWIFY(REGULATOR) == "multiplicative",
         emp::MultiplicativeCountdownRegulator<>,
-      std::conditional<STRINGVIEWIFY(SELECTOR) == "additive",
+      std::conditional<STRINGVIEWIFY(REGULATOR) == "additive",
         emp::AdditiveCountdownRegulator<>,
+      std::conditional<STRINGVIEWIFY(REGULATOR) == "no-op",
+        emp::NoopRegulator,
         std::enable_if<false>
+    >::type
     >::type
     >::type
 #else
