@@ -9,8 +9,6 @@ matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams["legend.frameon"] = False
 sns.set(style='whitegrid')
 
-fig, ax1 = plt.subplots(1,1)
-
 # import dataset
 data_in = pd.read_csv(sys.argv[1])
 
@@ -37,6 +35,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
 
     # BARPLOT ##################################################################
+
+    # for some reason, doing it this way is necessary to make this work...
+    fig, ax1 = plt.subplots(1,1)
 
     # https://stackoverflow.com/a/51639516
     g = sns.barplot(
@@ -71,6 +72,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
 
     plt.clf()
+
+    # for some reason, doing it this way is necessary to make this work...
+    fig, ax1 = plt.subplots(1,1)
 
     # https://stackoverflow.com/a/51639516
     g = sns.barplot(
