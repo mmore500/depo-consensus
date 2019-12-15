@@ -34,6 +34,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         axis=1
     )
 
+    # make sure that we have data from all runs
+    assert( len(data_fil[data_fil["Update"] == max_upd]) == 150 )
+
     # BARPLOT ##################################################################
 
     # for some reason, doing it this way is necessary to make this work...
