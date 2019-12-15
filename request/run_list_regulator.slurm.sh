@@ -1,6 +1,6 @@
 #!/bin/bash
 ########## Define Resources Needed with SBATCH Lines ##########
-#SBATCH --time=4:00:00         # limit of wall clock time - how long the job will run (same as -t)
+#SBATCH --time=8:00:00         # limit of wall clock time - how long the job will run (same as -t)
 #SBATCH --array=0-179
 #SBATCH --mem=8G                # memory required per node - amount of memory (in bytes)
 #SBATCH --job-name depo-consensus-regulator     # you can give your job a name for easier identification (same as -J)
