@@ -8,6 +8,7 @@ import itertools
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams["legend.frameon"] = False
 sns.set(style='whitegrid')
+sns.set_palette(list(sns.color_palette())[3:])
 
 # import dataset
 data_in = pd.read_csv(sys.argv[1])
