@@ -48,6 +48,12 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
     # for some reason, doing it this way is necessary to make this work...
     fig, ax1 = plt.subplots(1,1)
 
+    ax1.axhline(
+        y=1 - difficulty/9,
+        linewidth=1,
+        linestyle=":",
+        color='k',
+    )
     # https://stackoverflow.com/a/51639516
     g = sns.barplot(
         data=data_fil[data_fil["Update"] == data_fil["Update"].max()-1],
@@ -85,6 +91,12 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
     # for some reason, doing it this way is necessary to make this work...
     fig, ax1 = plt.subplots(1,1)
 
+    plt.gca().axhline(
+        y=1 - difficulty/9,
+        linewidth=1,
+        linestyle=":",
+        color='k',
+    )
     # https://stackoverflow.com/a/51639516
     g = sns.barplot(
         data=data_fil[data_fil["Update"] == data_fil["Update"].max()],
@@ -122,6 +134,12 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
 
     # SWARMPLOT ################################################################
 
+    plt.gca().axhline(
+        y=1 - difficulty/9,
+        linewidth=1,
+        linestyle=":",
+        color='k',
+    )
     # https://stackoverflow.com/a/51639516
     g = sns.swarmplot(
         data=data_fil[data_fil["Update"] == data_fil["Update"].max()-1],
@@ -155,6 +173,12 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
 
     plt.clf()
 
+    plt.gca().axhline(
+        y=1 - difficulty/9,
+        linewidth=1,
+        linestyle=":",
+        color='k',
+    )
     # https://stackoverflow.com/a/51639516
     g = sns.swarmplot(
         data=data_fil[data_fil["Update"] == data_fil["Update"].max()],
@@ -281,6 +305,14 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
         margin_titles=True,
     )
 
+    g.map( # **_ means ignore kwargs
+        lambda **_: plt.gca().axhline(
+            y=1 - difficulty/9,
+            linewidth=1,
+            linestyle=":",
+            color='k',
+        )
+    )
     g.map(
         sns.lineplot,
         "Update",
@@ -308,6 +340,14 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
         data=data_fil[data_fil["Update"] > data_fil["Update"].max()-2],
         col="Selector",
         margin_titles=True,
+    )
+    g.map( # **_ means ignore kwargs
+        lambda **_: plt.gca().axhline(
+            y=1 - difficulty/9,
+            linewidth=1,
+            linestyle=":",
+            color='k',
+        )
     )
     g.map(
         sns.barplot,

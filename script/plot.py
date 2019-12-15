@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -8,6 +9,12 @@ import itertools
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams["legend.frameon"] = False
 sns.set(style='whitegrid')
+
+from itertools import zip_longest
+
+def grouper(iterable, n, fillvalue=None):
+    args = [iter(iterable)] * n
+    return zip_longest(*args, fillvalue=fillvalue)
 
 # import dataset
 data_in = pd.read_csv(sys.argv[1])
@@ -50,6 +57,14 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         hue="Selector",
         ax=ax1
     )
+    xs = sorted(p.get_x() for p in ax1.patches)
+    width = ax1.patches[0].get_width()
+    for i, (a, b, c) in enumerate(grouper(xs, 3)):
+        plt.plot(
+            (a, c+width),
+            (1- i/9, 1- i/9),
+            'k:'
+        )
     box = g.get_position()
     g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
     g.legend(
@@ -87,6 +102,14 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         hue="Selector",
         ax=ax1
     )
+    xs = sorted(p.get_x() for p in ax1.patches)
+    width = ax1.patches[0].get_width()
+    for i, (a, b, c) in enumerate(grouper(xs, 3)):
+        plt.plot(
+            (a, c+width),
+            (1- i/9, 1- i/9),
+            'k:'
+        )
     box = g.get_position()
     g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
     g.legend(
@@ -123,6 +146,15 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         y="Best Fitness",
         hue="Selector",
     )
+    for i, (a, b) in enumerate(zip(
+        np.linspace(*plt.gca().get_xlim(), num=6),
+        np.linspace(*plt.gca().get_xlim(), num=6)[1:]
+    )):
+        plt.plot(
+            (a, b),
+            (1- i/9, 1- i/9),
+            'k:'
+        )
     box = g.get_position()
     g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
     g.legend(
@@ -156,6 +188,15 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         y="Best Fitness",
         hue="Selector",
     )
+    for i, (a, b) in enumerate(zip(
+        np.linspace(*plt.gca().get_xlim(), num=6),
+        np.linspace(*plt.gca().get_xlim(), num=6)[1:]
+    )):
+        plt.plot(
+            (a, b),
+            (1- i/9, 1- i/9),
+            'k:'
+        )
     box = g.get_position()
     g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
     g.legend(
@@ -272,6 +313,16 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
 
     g.map(
+        lambda difficulty, size, **_: plt.gca().axhline(
+            y=1 - difficulty.iloc[0] / { "big" : 81, "small" : 9}[size.iloc[0]],
+            linewidth=1,
+            linestyle=":",
+            color='k',
+        ),
+        "Problem Difficulty",
+        "size",
+    )
+    g.map(
         sns.lineplot,
         "Update",
         "Upper Quartile Fitness",
@@ -299,6 +350,15 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         col="Selector",
         margin_titles=True,
     )
+    def draw_barplot_baselines(**_):
+        xs = sorted(p.get_x() for p in plt.gca().patches)
+        width = plt.gca().patches[0].get_width()
+        for i, (a, c) in enumerate(grouper(xs, 2)):
+            plt.plot(
+                (a, c+width),
+                (1- i/9, 1- i/9),
+                'k:'
+            )
     g.map(
         sns.barplot,
         "Problem Difficulty",
@@ -308,6 +368,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         palette=list(reversed(sns.color_palette())),
         dodge=True,
     )
+    g.map(draw_barplot_baselines)
     g.add_legend(title="Evaluation Grid\nDimensions")
 
     # save to disk
