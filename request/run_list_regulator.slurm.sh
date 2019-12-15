@@ -23,7 +23,7 @@ SELECTOR=$(python3 -c "print(                                                  \
  ['ranked', 'sieve', 'depo'][${SLURM_ARRAY_TASK_ID} % 3]                       \
 )")
 REGULATOR=$(python3 -c "print(                                                 \
- ['additive', 'multiplicative', 'no-op'][${SLURM_ARRAY_TASK_ID} // 30]         \
+ ['additive', 'multiplicative', 'no-op'][${SLURM_ARRAY_TASK_ID} // 60]         \
 )")
 
 REPLICATE=\
