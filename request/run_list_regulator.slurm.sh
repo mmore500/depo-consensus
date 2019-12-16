@@ -11,7 +11,7 @@
 echo "Prepare Env Vars"
 ################################################################################
 
-SEED_OFFSET=1000
+SEED_OFFSET=3000
 SEED=$((SLURM_ARRAY_TASK_ID + SEED_OFFSET))
 CONFUSED_COUNT=$(python3 -c "print(                                            \
   1 if ${SLURM_ARRAY_TASK_ID} % 2 else 4                                       \
