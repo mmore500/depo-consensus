@@ -91,52 +91,6 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
 
     plt.clf()
 
-    # for some reason, doing it this way is necessary to make this work...
-    fig, ax1 = plt.subplots(1,1)
-
-    # https://stackoverflow.com/a/51639516
-    g = sns.barplot(
-        data=data_fil[data_fil["Update"] == data_fil["Update"].max()],
-        x="Problem Difficulty",
-        y="Best Fitness",
-        hue="Selector",
-        ax=ax1
-    )
-    xs = sorted(p.get_x() for p in ax1.patches)
-    width = ax1.patches[0].get_width()
-    for i, (a, b, c) in enumerate(grouper(xs, 3)):
-        plt.plot(
-            (a, c+width),
-            (1- i/9, 1- i/9),
-            'k:'
-        )
-    box = g.get_position()
-    g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
-    g.legend(
-        title="Selector",
-        loc='center right',
-        bbox_to_anchor=(1.2, 0.5),
-        ncol=1
-    )
-
-
-    # save to disk
-    outfile = "depo-consensus+" +  kn.pack({
-        "size" : size,
-        "title" : "barplot-secondary",
-        "ext" : ext,
-    })
-    plt.gcf().set_figwidth(11)
-    plt.gcf().set_figheight(3)
-    plt.savefig(
-        outfile,
-        transparent=True,
-        bbox_inches='tight',
-        pad_inches=0,
-    )
-
-    plt.clf()
-
     # SWARMPLOT ################################################################
 
     # https://stackoverflow.com/a/51639516
@@ -181,48 +135,6 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
 
     plt.clf()
 
-    # https://stackoverflow.com/a/51639516
-    g = sns.swarmplot(
-        data=data_fil[data_fil["Update"] == data_fil["Update"].max()],
-        x="Problem Difficulty",
-        y="Best Fitness",
-        hue="Selector",
-    )
-    for i, (a, b) in enumerate(zip(
-        np.linspace(*plt.gca().get_xlim(), num=6),
-        np.linspace(*plt.gca().get_xlim(), num=6)[1:]
-    )):
-        plt.plot(
-            (a, b),
-            (1- i/9, 1- i/9),
-            'k:'
-        )
-    box = g.get_position()
-    g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
-    g.legend(
-        title="Selector",
-        loc='center right',
-        bbox_to_anchor=(1.2, 0.5),
-        ncol=1
-    )
-
-    # save to disk
-    outfile = "depo-consensus+" +  kn.pack({
-        "size" : size,
-        "title" : "swarmplot-secondary",
-        "ext" : ext,
-    })
-    plt.gcf().set_figwidth(11)
-    plt.gcf().set_figheight(3)
-    plt.savefig(
-        outfile,
-        transparent=True,
-        bbox_inches='tight',
-        pad_inches=0,
-    )
-
-    plt.clf()
-
     # COUNTPLOT ################################################################
 
     # https://stackoverflow.com/a/51639516
@@ -249,42 +161,6 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     outfile = "depo-consensus+" +  kn.pack({
         "size" : size,
         "title" : "countplot",
-        "ext" : ext,
-    })
-    plt.gcf().set_figwidth(11)
-    plt.gcf().set_figheight(3)
-    plt.savefig(
-        outfile,
-        transparent=True,
-        bbox_inches='tight',
-        pad_inches=0,
-    )
-
-    plt.clf()
-
-    # https://stackoverflow.com/a/51639516
-    g = sns.countplot(
-        data=data_fil[
-                (data_fil["Update"] == data_fil["Update"].max())
-                & (data_fil["Best Fitness"] == 1)
-            ],
-        x="Problem Difficulty",
-        hue="Selector",
-    )
-    box = g.get_position()
-    g.set_position([box.x0, box.y0, box.width * 0.85, box.height])
-    g.legend(
-        title="Selector",
-        loc='center right',
-        bbox_to_anchor=(1.2, 0.5),
-        ncol=1
-    )
-    g.set_ylabel("Perfect Solution Count")
-
-    # save to disk
-    outfile = "depo-consensus+" +  kn.pack({
-        "size" : size,
-        "title" : "countplot-secondary",
         "ext" : ext,
     })
     plt.gcf().set_figwidth(11)

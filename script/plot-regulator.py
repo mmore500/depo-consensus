@@ -88,50 +88,6 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
 
     plt.clf()
 
-    # for some reason, doing it this way is necessary to make this work...
-    fig, ax1 = plt.subplots(1,1)
-
-    plt.gca().axhline(
-        y=1 - difficulty/9,
-        linewidth=1,
-        linestyle=":",
-        color='k',
-    )
-    # https://stackoverflow.com/a/51639516
-    g = sns.barplot(
-        data=data_fil[data_fil["Update"] == data_fil["Update"].max()],
-        x="Selector",
-        y="Best Fitness",
-        hue="Regulator",
-        ax=ax1,
-    )
-    box = g.get_position()
-    g.set_position([box.x0, box.y0, box.width * 0.8, box.height])
-    g.legend(
-        title="Regulator",
-        loc='center right',
-        bbox_to_anchor=(1.25, 0.5),
-        ncol=1
-    )
-
-
-    # save to disk
-    outfile = "depo-consensus+" +  kn.pack({
-        "difficulty" : difficulty,
-        "title" : "barplot-secondary",
-        "ext" : ext,
-    })
-    plt.gcf().set_figwidth(11)
-    plt.gcf().set_figheight(3)
-    plt.savefig(
-        outfile,
-        transparent=True,
-        bbox_inches='tight',
-        pad_inches=0,
-    )
-
-    plt.clf()
-
     # SWARMPLOT ################################################################
 
     plt.gca().axhline(
@@ -179,38 +135,6 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
         linestyle=":",
         color='k',
     )
-    # https://stackoverflow.com/a/51639516
-    g = sns.swarmplot(
-        data=data_fil[data_fil["Update"] == data_fil["Update"].max()],
-        x="Selector",
-        y="Best Fitness",
-        hue="Regulator",
-    )
-    box = g.get_position()
-    g.set_position([box.x0, box.y0, box.width * 0.8, box.height])
-    g.legend(
-        title="Regulator",
-        loc='center right',
-        bbox_to_anchor=(1.25, 0.5),
-        ncol=1
-    )
-
-    # save to disk
-    outfile = "depo-consensus+" +  kn.pack({
-        "difficulty" : difficulty,
-        "title" : "swarmplot-secondary",
-        "ext" : ext,
-    })
-    plt.gcf().set_figwidth(11)
-    plt.gcf().set_figheight(3)
-    plt.savefig(
-        outfile,
-        transparent=True,
-        bbox_inches='tight',
-        pad_inches=0,
-    )
-
-    plt.clf()
 
     # COUNTPLOT ################################################################
 
@@ -240,44 +164,6 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
     outfile = "depo-consensus+" +  kn.pack({
         "difficulty" : difficulty,
         "title" : "countplot",
-        "ext" : ext,
-    })
-    plt.gcf().set_figwidth(11)
-    plt.gcf().set_figheight(3)
-    plt.savefig(
-        outfile,
-        transparent=True,
-        bbox_inches='tight',
-        pad_inches=0,
-    )
-
-    plt.clf()
-
-    # https://stackoverflow.com/a/51639516
-    g = sns.countplot(
-        data=data_fil[
-                (data_fil["Update"] == data_fil["Update"].max())
-                & (data_fil["Best Fitness"] == 1)
-            ],
-        x="Selector",
-        order=selectors,
-        hue="Regulator",
-        hue_order=regulators,
-    )
-    box = g.get_position()
-    g.set_position([box.x0, box.y0, box.width * 0.8, box.height])
-    g.legend(
-        title="Regulator",
-        loc='center right',
-        bbox_to_anchor=(1.25, 0.5),
-        ncol=1
-    )
-    g.set_ylabel("Perfect Solution Count")
-
-    # save to disk
-    outfile = "depo-consensus+" +  kn.pack({
-        "difficulty" : difficulty,
-        "title" : "countplot-secondary",
         "ext" : ext,
     })
     plt.gcf().set_figwidth(11)
