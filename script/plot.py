@@ -90,6 +90,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
 
     plt.clf()
+    plt.close()
 
     # SWARMPLOT ################################################################
 
@@ -134,6 +135,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
 
     plt.clf()
+    plt.close()
 
     # COUNTPLOT ################################################################
 
@@ -173,6 +175,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
 
     plt.clf()
+    plt.close()
 
     # LINEPLOT #################################################################
 
@@ -218,6 +221,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
 
     plt.clf()
+    plt.close()
 
     # FACET BARPLOT ############################################################
 
@@ -266,6 +270,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
 
     plt.clf()
+    plt.close()
 
     # FACET COUNTPLOT ##########################################################
 
@@ -309,3 +314,4 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
 
     plt.clf()
+    plt.close()

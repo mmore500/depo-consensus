@@ -87,6 +87,7 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
     )
 
     plt.clf()
+    plt.close()
 
     # SWARMPLOT ################################################################
 
@@ -128,13 +129,7 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
     )
 
     plt.clf()
-
-    plt.gca().axhline(
-        y=1 - difficulty/9,
-        linewidth=1,
-        linestyle=":",
-        color='k',
-    )
+    plt.close()
 
     # COUNTPLOT ################################################################
 
@@ -176,6 +171,7 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
     )
 
     plt.clf()
+    plt.close()
 
     # LINEPLOT #################################################################
 
@@ -219,6 +215,7 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
     )
 
     plt.clf()
+    plt.close()
 
     # FACET BARPLOT ############################################################
 
@@ -266,6 +263,7 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
     )
 
     plt.clf()
+    plt.close()
 
     # FACET COUNTPLOT ##########################################################
 
@@ -310,3 +308,4 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
     )
 
     plt.clf()
+    plt.close()
