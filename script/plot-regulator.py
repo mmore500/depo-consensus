@@ -246,6 +246,9 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
         dodge=True,
     )
     g.add_legend(title="Evaluation Grid\nDimensions")
+    g.axes.flat[0].set_ylabel("Best Fitness")
+    for ax in g.axes.flat:
+        ax.set_xlabel("Problem Difficulty")
 
     # save to disk
     outfile = "depo-consensus+" +  kn.pack({
@@ -278,8 +281,6 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
     def countplot(x, hue, **kwargs):
         sns.countplot(
             x=x, hue=hue, **kwargs
-        ).set_ylabel(
-            "Perfect Solution Count"
         )
     g.map(
         countplot,
@@ -291,6 +292,7 @@ for difficulty, ext in itertools.product( (1, 4), (".pdf", ".png") ):
         dodge=True,
     )
     g.add_legend(title="Evaluation Grid\nDimensions")
+    g.axes.flat[0].set_ylabel("Perfect Solution Count")
 
     # save to disk
     outfile = "depo-consensus+" + kn.pack({

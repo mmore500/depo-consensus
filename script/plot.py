@@ -246,6 +246,9 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     )
     g.map(draw_barplot_baselines)
     g.add_legend(title="Evaluation Grid\nDimensions")
+    g.axes.flat[0].set_ylabel("Best Fitness")
+    for ax in g.axes.flat:
+        ax.set_xlabel("Problem Difficulty")
 
     # save to disk
     outfile = "depo-consensus+" +  kn.pack({
@@ -278,8 +281,6 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
     def countplot(x, hue, **kwargs):
         sns.countplot(
             x=x, hue=hue, **kwargs
-        ).set_ylabel(
-            "Perfect Solution Count"
         )
     g.map(
         countplot,
@@ -290,6 +291,7 @@ for size, ext in itertools.product( ("big", "small"), (".pdf", ".png") ):
         dodge=True,
     )
     g.add_legend(title="Evaluation Grid\nDimensions")
+    g.axes.flat[0].set_ylabel("Perfect Solution Count")
 
     # save to disk
     outfile = "depo-consensus+" + kn.pack({
